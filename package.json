@@ -2,6 +2,7 @@
   "name": "q-compare",
   "private": true,
   "version": "1.0.0",
+  "license": "MIT",
   "type": "module",
   "description": "Q-Compare — interactive empirical laboratory for comparing Classical, Bayesian, and Quantum-Inspired decision models.",
   "scripts": {

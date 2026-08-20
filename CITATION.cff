@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it using the metadata below."
+title: "Q-Compare: An Interactive Empirical Laboratory for Comparing Classical, Bayesian, and Quantum-Inspired Decision Models"
+type: software
+authors:
+  - family-names: Patil
+    given-names: Prasad
+version: 1.0.0
+date-released: 2026-08-20
+repository-code: "https://github.com/prasadpatil25/q-compare"
+license: MIT
+keywords:
+  - quantum cognition
+  - decision making
+  - order effects
+  - Bayesian models
+  - cognitive modeling

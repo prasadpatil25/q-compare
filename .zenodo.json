@@ -1,0 +1,20 @@
+{
+  "title": "Q-Compare: An Interactive Empirical Laboratory for Comparing Classical, Bayesian, and Quantum-Inspired Decision Models",
+  "description": "Q-Compare is an interactive web application and analysis toolkit for benchmarking classical, Bayesian, and quantum-inspired models of human decision making against empirical order-effect and context-effect datasets. It includes model-fitting code, a leave-one-order-out cross-validation module, sensitivity analysis over evidence geometry, and a dashboard for comparing model fit (AIC/BIC, accuracy, calibration).",
+  "creators": [
+    {
+      "name": "Patil, Prasad"
+    }
+  ],
+  "license": "MIT",
+  "upload_type": "software",
+  "access_right": "open",
+  "keywords": [
+    "quantum cognition",
+    "decision making",
+    "order effects",
+    "Bayesian models",
+    "cognitive modeling",
+    "model comparison"
+  ]
+}
