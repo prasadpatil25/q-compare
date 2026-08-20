@@ -1,0 +1,17 @@
+name = "q-compare"
+main = "worker/index.ts"
+compatibility_date = "2025-06-01"
+
+# Cloudflare Pages deployment of the built frontend (dist/):
+#   npx wrangler pages deploy dist
+# The Worker API is deployed separately:
+#   npx wrangler deploy
+
+[[d1_databases]]
+binding = "DB"
+database_name = "q-compare"
+database_id = "ba377640-30c3-463b-83a6-f0366680a9a5"
+
+# Optional: bind the Worker to a route (only when serving the API separately).
+# [routes]
+# pattern = "api.qcompare.example.com/*"

@@ -1,0 +1,64 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+dist-ssr/
+build/
+*.tsbuildinfo
+.vite/
+
+# Environment / secrets
+.env
+.env.*
+!.env.example
+
+# SQLite database (generated and seeded at runtime)
+*.sqlite
+*.sqlite3
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# LaTeX build artifacts
+*.aux
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+
+# Docs (manuscript drafts, research notes) — kept locally, not published
+docs/
+
+# Tool caches / stray archives
+.cache/
+docs.zip
+
+# Test run output
+test-results/
+playwright-report/
+
+# Pi coding agent: keep any project-local Pi config/credentials out of the repo.
+# (Keys normally live in ~/.pi, your home dir, outside this repo anyway.)
+.pi/
+
+# Coding-agent tooling/config — internal, not published
+.claude/
+.agents/
+.devcontainer/
+AGENTS.md
+opencode.json
+skills-lock.json
+
+# Editor / OS
+.DS_Store
+.idea/
+.vscode/
+*.swp
+Thumbs.db
