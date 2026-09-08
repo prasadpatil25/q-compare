@@ -72,10 +72,10 @@
           }
         },
         "classical-anchor": {
-          "k": 2,
+          "k": 5,
           "nll": 1028.252227,
-          "aic": 2060.504454,
-          "bic": 2070.062023,
+          "aic": 2066.504454,
+          "bic": 2090.398378,
           "predictions": {
             "AB": {
               "AyBy": 0.5453877891913752,
@@ -94,10 +94,10 @@
           "tauBA": 0.045794
         },
         "quantum": {
-          "k": 2,
+          "k": 5,
           "nll": 1021.043163,
-          "aic": 2046.086325,
-          "bic": 2055.643895,
+          "aic": 2052.086325,
+          "bic": 2075.98025,
           "predictions": {
             "AB": {
               "AyBy": 0.5734979619960987,
@@ -140,9 +140,9 @@
       "aicWinner": "quantum",
       "bicWinner": "quantum",
       "advantageClass": "detected",
-      "deltaAicQuantumVsPooled": -23.152823,
-      "deltaBicQuantumVsPooled": -27.931608,
-      "deltaAicQuantumVsSaturated": 80.264693,
+      "deltaAicQuantumVsPooled": -17.152823,
+      "deltaBicQuantumVsPooled": -7.595253,
+      "deltaAicQuantumVsSaturated": 86.264693,
       "deltaAicQuantumVsAnchor": -14.418129
     },
     {
@@ -215,10 +215,10 @@
           }
         },
         "classical-anchor": {
-          "k": 2,
+          "k": 5,
           "nll": 1097.714359,
-          "aic": 2199.428718,
-          "bic": 2208.832638,
+          "aic": 2205.428718,
+          "bic": 2228.938519,
           "predictions": {
             "AB": {
               "AyBy": 0.38359057954605447,
@@ -237,10 +237,10 @@
           "tauBA": 0.02716
         },
         "quantum": {
-          "k": 2,
+          "k": 5,
           "nll": 1098.651715,
-          "aic": 2201.303431,
-          "bic": 2210.707351,
+          "aic": 2207.303431,
+          "bic": 2230.813233,
           "predictions": {
             "AB": {
               "AyBy": 0.3710073710073711,
@@ -280,12 +280,12 @@
           }
         }
       },
-      "aicWinner": "classical-anchor",
-      "bicWinner": "classical-anchor",
+      "aicWinner": "classical-pooled",
+      "bicWinner": "classical-pooled",
       "advantageClass": "null",
-      "deltaAicQuantumVsPooled": -2,
-      "deltaBicQuantumVsPooled": -6.701961,
-      "deltaAicQuantumVsSaturated": 139.994123,
+      "deltaAicQuantumVsPooled": 4,
+      "deltaBicQuantumVsPooled": 13.403921,
+      "deltaAicQuantumVsSaturated": 145.994123,
       "deltaAicQuantumVsAnchor": 1.874713
     },
     {
@@ -358,10 +358,10 @@
           }
         },
         "classical-anchor": {
-          "k": 2,
+          "k": 5,
           "nll": 1077.173661,
-          "aic": 2158.347321,
-          "bic": 2168.049691,
+          "aic": 2164.347321,
+          "bic": 2188.603246,
           "predictions": {
             "AB": {
               "AyBy": 0.4131430819072421,
@@ -380,10 +380,10 @@
           "tauBA": -0.021911
         },
         "quantum": {
-          "k": 2,
+          "k": 5,
           "nll": 1079.768279,
-          "aic": 2163.536557,
-          "bic": 2173.238927,
+          "aic": 2169.536557,
+          "bic": 2193.792482,
           "predictions": {
             "AB": {
               "AyBy": 0.4,
@@ -424,11 +424,11 @@
         }
       },
       "aicWinner": "classical-anchor",
-      "bicWinner": "classical-anchor",
+      "bicWinner": "classical-pooled",
       "advantageClass": "null",
-      "deltaAicQuantumVsPooled": -2,
-      "deltaBicQuantumVsPooled": -6.851185,
-      "deltaAicQuantumVsSaturated": 4.618903,
+      "deltaAicQuantumVsPooled": 4,
+      "deltaBicQuantumVsPooled": 13.70237,
+      "deltaAicQuantumVsSaturated": 10.618903,
       "deltaAicQuantumVsAnchor": 5.189236
     },
     {
@@ -501,10 +501,10 @@
           }
         },
         "classical-anchor": {
-          "k": 2,
+          "k": 5,
           "nll": 1200.105488,
-          "aic": 2404.210976,
-          "bic": 2413.96144,
+          "aic": 2410.210976,
+          "bic": 2434.587136,
           "predictions": {
             "AB": {
               "AyBy": 0.3567305160396355,
@@ -523,10 +523,10 @@
           "tauBA": 0.015424
         },
         "quantum": {
-          "k": 2,
+          "k": 5,
           "nll": 1164.744476,
-          "aic": 2333.488953,
-          "bic": 2343.239417,
+          "aic": 2339.488953,
+          "bic": 2363.865113,
           "predictions": {
             "AB": {
               "AyBy": 0.3958744529569389,
@@ -569,9 +569,9 @@
       "aicWinner": "quantum",
       "bicWinner": "quantum",
       "advantageClass": "detected",
-      "deltaAicQuantumVsPooled": -75.758196,
-      "deltaBicQuantumVsPooled": -80.633428,
-      "deltaAicQuantumVsSaturated": 57.059972,
+      "deltaAicQuantumVsPooled": -69.758196,
+      "deltaBicQuantumVsPooled": -60.007732,
+      "deltaAicQuantumVsSaturated": 63.059972,
       "deltaAicQuantumVsAnchor": -70.722023
     },
     {
@@ -644,10 +644,10 @@
           }
         },
         "classical-anchor": {
-          "k": 2,
+          "k": 5,
           "nll": 282.986452,
-          "aic": 569.972903,
-          "bic": 576.796196,
+          "aic": 575.972903,
+          "bic": 593.031134,
           "predictions": {
             "AB": {
               "AyBy": 0.38873778860909597,
@@ -666,10 +666,10 @@
           "tauBA": -0.024595
         },
         "quantum": {
-          "k": 2,
+          "k": 5,
           "nll": 275.123008,
-          "aic": 554.246016,
-          "bic": 561.069308,
+          "aic": 560.246016,
+          "bic": 577.304246,
           "predictions": {
             "AB": {
               "AyBy": 0.40442051172209864,
@@ -712,9 +712,9 @@
       "aicWinner": "quantum",
       "bicWinner": "quantum",
       "advantageClass": "detected",
-      "deltaAicQuantumVsPooled": -18.441134,
-      "deltaBicQuantumVsPooled": -21.85278,
-      "deltaAicQuantumVsSaturated": 1.803138,
+      "deltaAicQuantumVsPooled": -12.441134,
+      "deltaBicQuantumVsPooled": -5.617842,
+      "deltaAicQuantumVsSaturated": 7.803138,
       "deltaAicQuantumVsAnchor": -15.726887
     },
     {
@@ -787,10 +787,10 @@
           }
         },
         "classical-anchor": {
-          "k": 2,
+          "k": 5,
           "nll": 278.931583,
-          "aic": 561.863165,
-          "bic": 568.686457,
+          "aic": 567.863165,
+          "bic": 584.921395,
           "predictions": {
             "AB": {
               "AyBy": 0.27282359313964843,
@@ -809,10 +809,10 @@
           "tauBA": 0.01992
         },
         "quantum": {
-          "k": 2,
+          "k": 5,
           "nll": 279.250094,
-          "aic": 562.500187,
-          "bic": 569.32348,
+          "aic": 568.500187,
+          "bic": 585.558418,
           "predictions": {
             "AB": {
               "AyBy": 0.28124999999999994,
@@ -852,12 +852,12 @@
           }
         }
       },
-      "aicWinner": "classical-anchor",
-      "bicWinner": "classical-anchor",
+      "aicWinner": "classical-pooled",
+      "bicWinner": "classical-pooled",
       "advantageClass": "null",
-      "deltaAicQuantumVsPooled": -2,
-      "deltaBicQuantumVsPooled": -5.411646,
-      "deltaAicQuantumVsSaturated": -5.464094,
+      "deltaAicQuantumVsPooled": 4,
+      "deltaBicQuantumVsPooled": 10.823292,
+      "deltaAicQuantumVsSaturated": 0.535906,
       "deltaAicQuantumVsAnchor": 0.637022
     }
   ],
@@ -865,23 +865,23 @@
     "nDatasets": 6,
     "wins": {
       "classical-marginal": 0,
-      "classical-pooled": 0,
+      "classical-pooled": 2,
       "bayesian": 0,
-      "classical-anchor": 3,
+      "classical-anchor": 1,
       "quantum": 3
     },
     "bicWins": {
       "classical-marginal": 0,
-      "classical-pooled": 0,
+      "classical-pooled": 3,
       "bayesian": 0,
-      "classical-anchor": 3,
+      "classical-anchor": 0,
       "quantum": 3
     },
-    "meanDeltaAicQuantumVsPooled": -20.558692,
-    "meanDeltaAicQuantumVsSaturated": 46.379456,
+    "meanDeltaAicQuantumVsPooled": -14.558692,
+    "meanDeltaAicQuantumVsSaturated": 52.379456,
     "meanDeltaAicQuantumVsAnchor": -15.527678,
-    "quantumBetterThanPooled": 6,
-    "quantumBetterThanSaturated": 1,
+    "quantumBetterThanPooled": 3,
+    "quantumBetterThanSaturated": 0,
     "quantumBetterThanAnchor": 3,
     "advantageDetected": 3,
     "advantageNull": 3

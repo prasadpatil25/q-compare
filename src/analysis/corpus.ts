@@ -321,6 +321,21 @@ function multinomialNll(predicted: Record<string, number>, observed: Record<stri
   return conditionNll(predicted, observed);
 }
 
+/**
+ * Free cells in the pooled joint distribution (four cells constrained to
+ * sum to 1).
+ *
+ * classical-anchor and the quantum-inspired model both build their
+ * predictions on top of this pooled distribution, which is estimated from
+ * the same data being fitted rather than supplied externally. Charging them
+ * only for their own two parameters, while charging classical-pooled 3 for
+ * the identical distribution, would make the quantum model appear cheaper
+ * than the order-invariant model it reproduces exactly at (cs, rs) = (0, 0),
+ * which is impossible for a model that nests it. Every family consuming the
+ * pooled base therefore pays for it.
+ */
+const POOLED_BASE_PARAMS = 3;
+
 function makeFamilyFit(
   k: number,
   nll: number,
@@ -480,7 +495,7 @@ function fitClassicalAnchor(
   const predAB = predAtTauAB(tauAB);
   const predBA = predAtTauBA(tauBA);
   const nll = multinomialNll(predAB, counts.ab) + multinomialNll(predBA, counts.ba);
-  const base = makeFamilyFit(2, nll, total, { AB: predAB, BA: predBA });
+  const base = makeFamilyFit(POOLED_BASE_PARAMS + 2, nll, total, { AB: predAB, BA: predBA });
   return { ...base, tauAB: round(tauAB, 6), tauBA: round(tauBA, 6) };
 }
 
@@ -522,7 +537,7 @@ function fitQuantum(
     AB: fit.predictions.AB as Record<OutcomeCell, number>,
     BA: fit.predictions.BA as Record<OutcomeCell, number>,
   };
-  const base = makeFamilyFit(fit.nParams, fit.nll, d.nAB + d.nBA, predictions);
+  const base = makeFamilyFit(POOLED_BASE_PARAMS + fit.nParams, fit.nll, d.nAB + d.nBA, predictions);
   return {
     ...base,
     contextStrength: round(fit.contextStrength, 6),

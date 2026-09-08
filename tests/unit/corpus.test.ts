@@ -141,15 +141,24 @@ describe('corpus benchmark', () => {
     expect(totalWins).toBe(6);
   });
 
-  it('classical-anchor is order-sensitive and matched in complexity (k=2) to quantum', () => {
+  it('classical-anchor is order-sensitive and complexity-matched to quantum', () => {
     const result = runCorpusBenchmark({ seed: 42 });
     for (const d of result.datasets) {
       const anchor = d.models['classical-anchor'];
-      expect(anchor.k).toBe(2);
+      // Both add two order parameters on top of the shared pooled base, so
+      // their counts must coincide whatever the base is charged at.
+      expect(anchor.k).toBe(d.models.quantum.k);
       expect(anchor.predictions.AB).not.toEqual(anchor.predictions.BA);
-      // k matched to quantum (also k=2): AIC delta and BIC delta must coincide exactly.
+      // k matched: AIC delta and BIC delta must coincide exactly.
       const bicDelta = d.models.quantum.bic - anchor.bic;
       expect(d.deltaAicQuantumVsAnchor).toBeCloseTo(bicDelta, 4);
+    }
+  });
+
+  it('quantum is charged at least as many parameters as the pooled model it nests at (0,0)', () => {
+    const result = runCorpusBenchmark({ seed: 42 });
+    for (const d of result.datasets) {
+      expect(d.models.quantum.k).toBeGreaterThanOrEqual(d.models['classical-pooled'].k);
     }
   });
 
