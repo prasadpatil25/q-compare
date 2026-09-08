@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import type { EvidenceItem, Outcome } from '../types';
 import { conditionNll, fitQuantumToData, quantumNll, type FitConditionInput, type FitResult } from '../models/quantum/fit';
-import { clamp } from '../utils';
+import { clamp, seededRandom } from '../utils';
 
 /**
  * Corpus benchmark — Wang & Busemeyer (2013) question-order datasets.
@@ -858,4 +858,157 @@ export function runLeaveOneOrderOut(options: CorpusBenchmarkOptions = {}): LooRe
       quantumOosBetterThanPooled,
     },
   };
+}
+
+/* ------------------------------------------------------------------ *
+ * Nonparametric bootstrap over respondents.
+ *
+ * The corpus reports aggregate contingency tables, so respondent-level
+ * cross-validation is impossible (see runLeaveOneOrderOut). The bootstrap
+ * below is the reachable substitute: it resamples respondents within each
+ * order condition from the observed multinomial, refits every family on the
+ * resampled table, and reports the sampling distribution of the model-
+ * selection differences. This answers whether the genuine/null split is
+ * stable under sampling noise or an artifact of one particular sample.
+ * ------------------------------------------------------------------ */
+
+export interface BootstrapDatasetResult {
+  datasetId: string;
+  label: string;
+  /** Point estimates on the observed (unresampled) table. */
+  observed: {
+    deltaAicQuantumVsPooled: number;
+    deltaAicQuantumVsAnchor: number;
+    advantageClass: 'detected' | 'null';
+  };
+  /** Percentile bootstrap 95% intervals: [lower, upper]. */
+  ci95: {
+    deltaAicQuantumVsPooled: [number, number];
+    deltaAicQuantumVsAnchor: [number, number];
+  };
+  /** Share of replicates in which the quantum model had the lower AIC. */
+  quantumBeatsPooledRate: number;
+  quantumBeatsAnchorRate: number;
+  /** Share of replicates classified 'detected' (order sensitivity actually used). */
+  advantageDetectedRate: number;
+}
+
+export interface BootstrapResult {
+  seed: number;
+  replicates: number;
+  support: number;
+  datasets: BootstrapDatasetResult[];
+}
+
+export interface BootstrapOptions extends CorpusBenchmarkOptions {
+  /** Bootstrap replicates per dataset. Default 400. */
+  replicates?: number;
+}
+
+/** One multinomial draw of `n` respondents over the four joint cells. */
+function multinomialSample(probs: readonly number[], n: number, rand: () => number): number[] {
+  const cum: number[] = [];
+  let acc = 0;
+  for (const p of probs) {
+    acc += Math.max(0, p);
+    cum.push(acc);
+  }
+  const total = acc || 1;
+  const out = new Array(probs.length).fill(0);
+  for (let i = 0; i < n; i++) {
+    const u = rand() * total;
+    let k = 0;
+    while (k < cum.length - 1 && u > cum[k]) k++;
+    out[k]++;
+  }
+  return out;
+}
+
+/** A synthetic dataset whose cell proportions come from one bootstrap resample. */
+function resampleDataset(d: CorpusDataset, rand: () => number): CorpusDataset {
+  const ab = multinomialSample(d.probsAB, d.nAB, rand);
+  const ba = multinomialSample(d.probsBA, d.nBA, rand);
+  const toProbs = (counts: number[], n: number): [number, number, number, number] =>
+    [counts[0] / n, counts[1] / n, counts[2] / n, counts[3] / n] as [number, number, number, number];
+  return { ...d, probsAB: toProbs(ab, d.nAB), probsBA: toProbs(ba, d.nBA) };
+}
+
+function percentile(sorted: number[], q: number): number {
+  if (sorted.length === 0) return Number.NaN;
+  const idx = clamp(Math.floor(q * (sorted.length - 1)), 0, sorted.length - 1);
+  return sorted[idx];
+}
+
+/**
+ * Nonparametric bootstrap of the corpus benchmark. Deterministic for a fixed
+ * seed. The quantum fitter's own seed is held constant across replicates so
+ * the reported spread reflects respondent sampling variability only, not
+ * optimizer restart variability.
+ */
+export function runCorpusBootstrap(options: BootstrapOptions = {}): BootstrapResult {
+  const replicates = options.replicates ?? 400;
+  const seed = options.seed ?? 42;
+  const support = options.support ?? 0.9;
+
+  const datasets = CORPUS_DATASETS.map((d, dIndex) => {
+    const baseCounts = datasetCounts(d);
+    const obsPooled = fitClassicalPooled(d, baseCounts);
+    const obsAnchor = fitClassicalAnchor(d, baseCounts);
+    const obsQuantum = fitQuantum(d, baseCounts, options);
+
+    // Distinct stream per dataset, reproducible from the run seed.
+    const rand = seededRandom(seed + 1000 * (dIndex + 1));
+
+    const dPooled: number[] = [];
+    const dAnchor: number[] = [];
+    let beatsPooled = 0;
+    let beatsAnchor = 0;
+    let detected = 0;
+
+    for (let b = 0; b < replicates; b++) {
+      const rd = resampleDataset(d, rand);
+      const rc = datasetCounts(rd);
+      const pooled = fitClassicalPooled(rd, rc);
+      const anchor = fitClassicalAnchor(rd, rc);
+      const quantum = fitQuantum(rd, rc, options);
+
+      const dp = quantum.aic - pooled.aic;
+      const da = quantum.aic - anchor.aic;
+      dPooled.push(dp);
+      dAnchor.push(da);
+      if (dp < 0) beatsPooled++;
+      if (da < 0) beatsAnchor++;
+      if (Math.abs(quantum.contextStrength) + Math.abs(quantum.rotationStrength) > 1e-6) detected++;
+    }
+
+    dPooled.sort((a, b) => a - b);
+    dAnchor.sort((a, b) => a - b);
+
+    return {
+      datasetId: d.id,
+      label: d.label,
+      observed: {
+        deltaAicQuantumVsPooled: round(obsQuantum.aic - obsPooled.aic, 6),
+        deltaAicQuantumVsAnchor: round(obsQuantum.aic - obsAnchor.aic, 6),
+        advantageClass: (Math.abs(obsQuantum.contextStrength) + Math.abs(obsQuantum.rotationStrength) > 1e-6
+          ? 'detected'
+          : 'null') as 'detected' | 'null',
+      },
+      ci95: {
+        deltaAicQuantumVsPooled: [round(percentile(dPooled, 0.025), 6), round(percentile(dPooled, 0.975), 6)] as [
+          number,
+          number,
+        ],
+        deltaAicQuantumVsAnchor: [round(percentile(dAnchor, 0.025), 6), round(percentile(dAnchor, 0.975), 6)] as [
+          number,
+          number,
+        ],
+      },
+      quantumBeatsPooledRate: round(beatsPooled / replicates, 4),
+      quantumBeatsAnchorRate: round(beatsAnchor / replicates, 4),
+      advantageDetectedRate: round(detected / replicates, 4),
+    };
+  });
+
+  return { seed, replicates, support, datasets };
 }
