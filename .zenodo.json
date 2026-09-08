@@ -4,7 +4,8 @@
   "description": "Q-Compare is an analysis toolkit and interactive web application for benchmarking classical, Bayesian, and quantum-inspired models of human decision making against empirical question-order datasets, under a matched-complexity comparison protocol. Version 2.0.0 adds a log-linear classical comparator, corrects the parameter accounting so that every family is charged for the pooled distribution it consumes, and adds nonparametric bootstrap, mechanism-ablation, and search-bound sensitivity analyses. All reported results changed relative to 1.x; this version reproduces the statistics in the accompanying manuscript. Also includes leave-one-order-out cross-validation, evidence-geometry sensitivity analysis, and model-fit comparison (AIC/BIC, accuracy, calibration).",
   "creators": [
     {
-      "name": "Patil, Prasad"
+      "name": "Patil, Prasad",
+      "orcid": "0009-0007-0306-4981"
     }
   ],
   "license": "MIT",
