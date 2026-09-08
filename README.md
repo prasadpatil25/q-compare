@@ -1,6 +1,6 @@
 # Q-Compare - Decision Model Lab
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22019653.svg)](https://doi.org/10.5281/zenodo.22019653)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22019652.svg)](https://doi.org/10.5281/zenodo.22019652)
 
 An interactive empirical laboratory for comparing **Classical**, **Bayesian**, and
 **Quantum-Inspired** decision models on the same uncertainty and decision-making
