@@ -93,6 +93,26 @@
           "tauAB": 0.030627,
           "tauBA": 0.045794
         },
+        "log-linear": {
+          "k": 5,
+          "nll": 977.115509,
+          "aic": 1964.231018,
+          "bic": 1988.124943,
+          "predictions": {
+            "AB": {
+              "AyBy": 0.4932359965868056,
+              "AyBn": 0.04143964767328265,
+              "AnBy": 0.17343074346794055,
+              "AnBn": 0.29189361227197114
+            },
+            "BA": {
+              "AyBy": 0.5590821780114497,
+              "AyBn": 0.20249189136973608,
+              "AnBy": 0.02888075035618243,
+              "AnBn": 0.20954518026263175
+            }
+          }
+        },
         "quantum": {
           "k": 5,
           "nll": 1021.043163,
@@ -137,8 +157,8 @@
           }
         }
       },
-      "aicWinner": "quantum",
-      "bicWinner": "quantum",
+      "aicWinner": "log-linear",
+      "bicWinner": "log-linear",
       "advantageClass": "detected",
       "deltaAicQuantumVsPooled": -17.152823,
       "deltaBicQuantumVsPooled": -7.595253,
@@ -236,6 +256,26 @@
           "tauAB": 0.021933,
           "tauBA": 0.02716
         },
+        "log-linear": {
+          "k": 5,
+          "nll": 1024.94284,
+          "aic": 2059.88568,
+          "bic": 2083.395482,
+          "predictions": {
+            "AB": {
+              "AyBy": 0.3986386798031619,
+              "AyBn": 0.07733389504714493,
+              "AnBy": 0.31532016890488046,
+              "AnBn": 0.20870725624481262
+            },
+            "BA": {
+              "AyBy": 0.3389784943814345,
+              "AyBn": 0.34802416129593583,
+              "AnBy": 0.06950956495431264,
+              "AnBn": 0.24348777936831684
+            }
+          }
+        },
         "quantum": {
           "k": 5,
           "nll": 1098.651715,
@@ -280,8 +320,8 @@
           }
         }
       },
-      "aicWinner": "classical-pooled",
-      "bicWinner": "classical-pooled",
+      "aicWinner": "log-linear",
+      "bicWinner": "log-linear",
       "advantageClass": "null",
       "deltaAicQuantumVsPooled": 4,
       "deltaBicQuantumVsPooled": 13.403921,
@@ -379,6 +419,26 @@
           "tauAB": 0.029928,
           "tauBA": -0.021911
         },
+        "log-linear": {
+          "k": 5,
+          "nll": 1076.787638,
+          "aic": 2163.575275,
+          "bic": 2187.8312,
+          "predictions": {
+            "AB": {
+              "AyBy": 0.3852066289067816,
+              "AyBn": 0.030915323145196356,
+              "AnBy": 0.17470621615503376,
+              "AnBn": 0.4091718317929882
+            },
+            "BA": {
+              "AyBy": 0.4139715310748028,
+              "AyBn": 0.04693384726482262,
+              "AnBy": 0.12512309058557192,
+              "AnBn": 0.4139715310748028
+            }
+          }
+        },
         "quantum": {
           "k": 5,
           "nll": 1079.768279,
@@ -423,7 +483,7 @@
           }
         }
       },
-      "aicWinner": "classical-anchor",
+      "aicWinner": "log-linear",
       "bicWinner": "classical-pooled",
       "advantageClass": "null",
       "deltaAicQuantumVsPooled": 4,
@@ -522,6 +582,26 @@
           "tauAB": -0.031693,
           "tauBA": 0.015424
         },
+        "log-linear": {
+          "k": 5,
+          "nll": 1132.221659,
+          "aic": 2274.443317,
+          "bic": 2298.819477,
+          "predictions": {
+            "AB": {
+              "AyBy": 0.3384849966057195,
+              "AyBn": 0.3235702970143079,
+              "AnBy": 0.017246278081208766,
+              "AnBn": 0.32069842829876394
+            },
+            "BA": {
+              "AyBy": 0.41499259899473423,
+              "AyBn": 0.06769140686664935,
+              "AnBy": 0.1239684196604725,
+              "AnBn": 0.39334757447814395
+            }
+          }
+        },
         "quantum": {
           "k": 5,
           "nll": 1164.744476,
@@ -566,8 +646,8 @@
           }
         }
       },
-      "aicWinner": "quantum",
-      "bicWinner": "quantum",
+      "aicWinner": "log-linear",
+      "bicWinner": "log-linear",
       "advantageClass": "detected",
       "deltaAicQuantumVsPooled": -69.758196,
       "deltaBicQuantumVsPooled": -60.007732,
@@ -665,6 +745,26 @@
           "tauAB": 0.024817,
           "tauBA": -0.024595
         },
+        "log-linear": {
+          "k": 5,
+          "nll": 271.415742,
+          "aic": 552.831484,
+          "bic": 569.889714,
+          "predictions": {
+            "AB": {
+              "AyBy": 0.3536366850393279,
+              "AyBn": 0.2756735974942926,
+              "AnBy": 0.034294466879183944,
+              "AnBn": 0.33639525058719555
+            },
+            "BA": {
+              "AyBy": 0.3979457443007104,
+              "AyBn": 0.07427652817310611,
+              "AnBy": 0.1576097749691265,
+              "AnBn": 0.3701679525570569
+            }
+          }
+        },
         "quantum": {
           "k": 5,
           "nll": 275.123008,
@@ -709,8 +809,8 @@
           }
         }
       },
-      "aicWinner": "quantum",
-      "bicWinner": "quantum",
+      "aicWinner": "log-linear",
+      "bicWinner": "log-linear",
       "advantageClass": "detected",
       "deltaAicQuantumVsPooled": -12.441134,
       "deltaBicQuantumVsPooled": -5.617842,
@@ -808,6 +908,26 @@
           "tauAB": -0.024513,
           "tauBA": 0.01992
         },
+        "log-linear": {
+          "k": 5,
+          "nll": 278.21492,
+          "aic": 566.429839,
+          "bic": 583.488069,
+          "predictions": {
+            "AB": {
+              "AyBy": 0.25420675654945896,
+              "AyBn": 0.05087792143975724,
+              "AnBy": 0.2881660963068822,
+              "AnBn": 0.4067492257039016
+            },
+            "BA": {
+              "AyBy": 0.311354671522585,
+              "AyBn": 0.07543785203278199,
+              "AnBy": 0.2263812332292065,
+              "AnBn": 0.38682624321542664
+            }
+          }
+        },
         "quantum": {
           "k": 5,
           "nll": 279.250094,
@@ -865,17 +985,19 @@
     "nDatasets": 6,
     "wins": {
       "classical-marginal": 0,
-      "classical-pooled": 2,
+      "classical-pooled": 1,
       "bayesian": 0,
-      "classical-anchor": 1,
-      "quantum": 3
+      "classical-anchor": 0,
+      "log-linear": 5,
+      "quantum": 0
     },
     "bicWins": {
       "classical-marginal": 0,
-      "classical-pooled": 3,
+      "classical-pooled": 2,
       "bayesian": 0,
       "classical-anchor": 0,
-      "quantum": 3
+      "log-linear": 4,
+      "quantum": 0
     },
     "meanDeltaAicQuantumVsPooled": -14.558692,
     "meanDeltaAicQuantumVsSaturated": 52.379456,

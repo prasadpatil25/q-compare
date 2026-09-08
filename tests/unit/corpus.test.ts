@@ -123,21 +123,17 @@ describe('corpus benchmark', () => {
     }
   });
 
-  it('AIC winner is one of the five candidate models and matches the minimum', () => {
+  const families = ['classical-marginal', 'classical-pooled', 'bayesian', 'classical-anchor', 'log-linear', 'quantum'] as const;
+
+  it('AIC winner is one of the six candidate models and matches the minimum', () => {
     const result = runCorpusBenchmark({ seed: 42 });
     for (const d of result.datasets) {
-      const families = ['classical-marginal', 'classical-pooled', 'bayesian', 'classical-anchor', 'quantum'] as const;
       expect(families).toContain(d.aicWinner);
       const min = Math.min(...families.map((f) => d.models[f].aic));
       expect(d.models[d.aicWinner].aic).toBeCloseTo(min, 6);
     }
     expect(result.summary.nDatasets).toBe(6);
-    const totalWins =
-      result.summary.wins['classical-marginal'] +
-      result.summary.wins['classical-pooled'] +
-      result.summary.wins.bayesian +
-      result.summary.wins['classical-anchor'] +
-      result.summary.wins.quantum;
+    const totalWins = families.reduce((acc, f) => acc + result.summary.wins[f], 0);
     expect(totalWins).toBe(6);
   });
 
@@ -162,10 +158,10 @@ describe('corpus benchmark', () => {
     }
   });
 
-  it('BIC winner is one of the five candidate models and matches the minimum', () => {
+  it('BIC winner is one of the six candidate models and matches the minimum', () => {
     const result = runCorpusBenchmark({ seed: 42 });
     for (const d of result.datasets) {
-      const families = ['classical-marginal', 'classical-pooled', 'bayesian', 'classical-anchor', 'quantum'] as const;
+
       expect(families).toContain(d.bicWinner);
       const min = Math.min(...families.map((f) => d.models[f].bic));
       expect(d.models[d.bicWinner].bic).toBeCloseTo(min, 6);

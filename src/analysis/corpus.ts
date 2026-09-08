@@ -158,7 +158,7 @@ export const CORPUS_DATASETS: CorpusDataset[] = [
   },
 ];
 
-export type ModelFamilyId = 'classical-marginal' | 'classical-pooled' | 'bayesian' | 'classical-anchor' | 'quantum';
+export type ModelFamilyId = 'classical-marginal' | 'classical-pooled' | 'bayesian' | 'classical-anchor' | 'log-linear' | 'quantum';
 
 export interface FamilyFit {
   k: number;
@@ -184,6 +184,7 @@ export interface DatasetBenchmark {
     'classical-pooled': FamilyFit;
     bayesian: FamilyFit;
     'classical-anchor': FamilyFit & { tauAB: number; tauBA: number };
+    'log-linear': FamilyFit;
     quantum: FamilyFit & { contextStrength: number; rotationStrength: number; converged: boolean };
     saturated: FamilyFit;
   };
@@ -233,6 +234,16 @@ export interface CorpusBenchmarkOptions {
   tolerance?: number;
   /** Likelihood placed on evidence-favored cells (default 0.9); see evidenceOf(). */
   support?: number;
+  /**
+   * Search bounds for the two quantum parameters. Defaults to
+   * DEFAULT_BOUNDS. Exposed so that (a) bound-width invariance can be
+   * tested, and (b) a single mechanism can be ablated by pinning its
+   * parameter to [0,0].
+   */
+  bounds?: {
+    contextStrength: [number, number];
+    rotationStrength: [number, number];
+  };
 }
 
 function round(value: number, digits = 6): number {
@@ -500,6 +511,65 @@ function fitClassicalAnchor(
 }
 
 /** Saturated: separate multinomial per order, k = 6 (reference, not a candidate). */
+/**
+ * Log-linear comparator: the standard statistical treatment of a two-way
+ * table with an order factor, and the classical family a survey
+ * methodologist would reach for first.
+ *
+ *   log p_c(a,b) ∝ α_c·1[a=y] + β_c·1[b=y] + γ·1[a=y,b=y]
+ *
+ * with α_BA = α + δ_a and β_BA = β + δ_b. Question order is allowed to shift
+ * each marginal endorsement rate but not the association between the two
+ * answers, which is the usual substantive hypothesis about order effects.
+ * Free parameters {α, β, γ, δ_a, δ_b} number five, matching the quantum
+ * family once the shared pooled base is charged (Section II-I), so the
+ * comparison is complexity-matched without further adjustment.
+ *
+ * Fitted by deterministic coordinate descent with step halving; the
+ * likelihood is smooth and low-dimensional, so no restarts are required.
+ */
+function fitLogLinear(d: CorpusDataset, counts: ReturnType<typeof datasetCounts>): FamilyFit {
+  const predictFrom = (p: number[]): Record<'AB' | 'BA', Record<OutcomeCell, number>> => {
+    const [alpha, beta, gamma, da, db] = p;
+    const build = (aShift: number, bShift: number): Record<OutcomeCell, number> => {
+      const raw: Record<OutcomeCell, number> = {
+        AyBy: Math.exp(alpha + aShift + beta + bShift + gamma),
+        AyBn: Math.exp(alpha + aShift),
+        AnBy: Math.exp(beta + bShift),
+        AnBn: 1,
+      };
+      const z = raw.AyBy + raw.AyBn + raw.AnBy + raw.AnBn;
+      return { AyBy: raw.AyBy / z, AyBn: raw.AyBn / z, AnBy: raw.AnBy / z, AnBn: raw.AnBn / z };
+    };
+    return { AB: build(0, 0), BA: build(da, db) };
+  };
+  const nllOf = (p: number[]): number => {
+    const pred = predictFrom(p);
+    return multinomialNll(pred.AB, counts.ab) + multinomialNll(pred.BA, counts.ba);
+  };
+
+  let best = [0, 0, 0, 0, 0];
+  let bestNll = nllOf(best);
+  let step = 1.0;
+  for (let iter = 0; iter < 200 && step > 1e-7; iter++) {
+    let improved = false;
+    for (let i = 0; i < best.length; i++) {
+      for (const dir of [1, -1]) {
+        const trial = [...best];
+        trial[i] = clamp(trial[i] + dir * step, -20, 20);
+        const v = nllOf(trial);
+        if (v < bestNll - 1e-12) {
+          best = trial;
+          bestNll = v;
+          improved = true;
+        }
+      }
+    }
+    if (!improved) step /= 2;
+  }
+  return makeFamilyFit(5, bestNll, d.nAB + d.nBA, predictFrom(best));
+}
+
 function fitSaturated(d: CorpusDataset, counts: ReturnType<typeof datasetCounts>): FamilyFit {
   const predAB: Record<OutcomeCell, number> = { AyBy: 0, AyBn: 0, AnBy: 0, AnBn: 0 };
   const predBA: Record<OutcomeCell, number> = { AyBy: 0, AyBn: 0, AnBy: 0, AnBn: 0 };
@@ -529,6 +599,7 @@ function fitQuantum(
     seed: options.seed ?? 42,
     restarts: options.restarts ?? 12,
     tolerance: options.tolerance ?? 1e-6,
+    ...(options.bounds ? { bounds: options.bounds } : {}),
     contextTransformation: 'unitary-mix',
     interferenceMode: 'on',
     amplitudeInit: 'sqrt-prior',
@@ -564,6 +635,7 @@ export function runCorpusBenchmark(options: CorpusBenchmarkOptions = {}): Corpus
     const classicalPooled = fitClassicalPooled(d, counts);
     const bayesian = fitBayesian(d, counts);
     const classicalAnchor = fitClassicalAnchor(d, counts);
+    const logLinear = fitLogLinear(d, counts);
     const quantum = fitQuantum(d, counts, options);
     const saturated = fitSaturated(d, counts);
 
@@ -572,6 +644,7 @@ export function runCorpusBenchmark(options: CorpusBenchmarkOptions = {}): Corpus
       'classical-pooled': classicalPooled.aic,
       bayesian: bayesian.aic,
       'classical-anchor': classicalAnchor.aic,
+      'log-linear': logLinear.aic,
       quantum: quantum.aic,
     };
     const aicWinner = (Object.keys(aicCandidates) as ModelFamilyId[]).reduce((best, key) =>
@@ -582,6 +655,7 @@ export function runCorpusBenchmark(options: CorpusBenchmarkOptions = {}): Corpus
       'classical-pooled': classicalPooled.bic,
       bayesian: bayesian.bic,
       'classical-anchor': classicalAnchor.bic,
+      'log-linear': logLinear.bic,
       quantum: quantum.bic,
     };
     const bicWinner = (Object.keys(bicCandidates) as ModelFamilyId[]).reduce((best, key) =>
@@ -601,6 +675,7 @@ export function runCorpusBenchmark(options: CorpusBenchmarkOptions = {}): Corpus
         'classical-pooled': classicalPooled,
         bayesian,
         'classical-anchor': classicalAnchor,
+        'log-linear': logLinear,
         quantum,
         saturated,
       },
@@ -620,6 +695,7 @@ export function runCorpusBenchmark(options: CorpusBenchmarkOptions = {}): Corpus
     'classical-pooled': 0,
     bayesian: 0,
     'classical-anchor': 0,
+    'log-linear': 0,
     quantum: 0,
   };
   const bicWins: CorpusBenchmarkResult['summary']['bicWins'] = {
@@ -627,6 +703,7 @@ export function runCorpusBenchmark(options: CorpusBenchmarkOptions = {}): Corpus
     'classical-pooled': 0,
     bayesian: 0,
     'classical-anchor': 0,
+    'log-linear': 0,
     quantum: 0,
   };
   let deltaPooled = 0;
