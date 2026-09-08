@@ -5,7 +5,7 @@ import { conditionNll, fitQuantumToData, quantumNll, type FitConditionInput, typ
 import { clamp, seededRandom } from '../utils';
 
 /**
- * Corpus benchmark — Wang & Busemeyer (2013) question-order datasets.
+ * Corpus benchmark - Wang & Busemeyer (2013) question-order datasets.
  *
  * Data: Table 1 of Wang, Z., & Busemeyer, J. R. (2013). "A Quantum Question
  * Order Model Supported by Empirical Tests of an A Priori and Precise
@@ -13,8 +13,8 @@ import { clamp, seededRandom } from '../utils';
  * full joint-response probabilities for both question orders (AB and BA),
  * including the Moore (2002) Gallup polls (consistency, contrast, additive,
  * subtractive) and two laboratory experiments (racial hostility, affirmative
- * action support). Raw survey corpus of Wang et al. (2014, PNAS) — 72
- * datasets — is not reproduced here; these six are the datasets whose joint
+ * action support). Raw survey corpus of Wang et al. (2014, PNAS) - 72
+ * datasets - is not reproduced here; these six are the datasets whose joint
  * probabilities are published in full.
  *
  * Modeling decisions (documented for the manuscript; review-sensitive):
@@ -60,7 +60,7 @@ import { clamp, seededRandom } from '../utils';
  *                           so it receives exactly the same information as
  *                           classical-pooled.
  *    - saturated          : separate multinomial per order (flexibility
- *                           upper bound), k = 6 — not a candidate model,
+ *                           upper bound), k = 6 - not a candidate model,
  *                           a reference.
  * 5. Selection: minimum AIC (and, separately, minimum BIC) among the five
  *    candidate models (classical-marginal, classical-pooled, bayesian,
@@ -82,9 +82,9 @@ export interface CorpusDataset {
   note?: string;
   nAB: number;
   nBA: number;
-  /** [AyBy, AyBn, AnBy, AnBn] — question order A then B. */
+  /** [AyBy, AyBn, AnBy, AnBn] - question order A then B. */
   probsAB: [number, number, number, number];
-  /** [ByAy, ByAn, BnAy, BnAn] — question order B then A. */
+  /** [ByAy, ByAn, BnAy, BnAn] - question order B then A. */
   probsBA: [number, number, number, number];
 }
 
@@ -190,9 +190,9 @@ export interface DatasetBenchmark {
   aicWinner: ModelFamilyId;
   bicWinner: ModelFamilyId;
   /**
-   * 'detected' — the fitted quantum model used its order sensitivity
+   * 'detected' - the fitted quantum model used its order sensitivity
    * (contextStrength ≠ 0 or rotationStrength ≠ 0) and improved in-sample
-   * NLL over the pooled baseline. 'null' — the best fit coincides with the
+   * NLL over the pooled baseline. 'null' - the best fit coincides with the
    * order-invariant pooled model (0,0); no quantum advantage detected.
    */
   advantageClass: 'detected' | 'null';
@@ -426,7 +426,7 @@ function searchTau(nllOfTau: (tau: number) => number): number {
  * Batchelder (2018) that classical accounts can reproduce mirrored
  * order-effect patterns without quantum assumptions. Because tau ranges
  * over both signs, this single mechanism can express BOTH diagonal-shift
- * ("assimilation") and off-diagonal-swap ("contrast") order effects —
+ * ("assimilation") and off-diagonal-swap ("contrast") order effects,
  * unlike the quantum-inspired model's rotation geometry (Section III-D).
  * k = 2 exactly matches the quantum-inspired model's free-parameter count,
  * making this the fairest available complexity-matched, order-sensitive
@@ -502,7 +502,7 @@ function fitQuantum(
   counts: ReturnType<typeof datasetCounts>,
   options: CorpusBenchmarkOptions,
 ): DatasetBenchmark['models']['quantum'] {
-  // Initial amplitudes use the pooled joint frequencies — the same
+  // Initial amplitudes use the pooled joint frequencies - the same
   // order-invariant information as classical-pooled.
   const outcomes = outcomesOf(d);
   const { eA, eB } = evidenceOf(d, options.support ?? 0.9);
@@ -668,7 +668,7 @@ export function writeCorpusBenchmark(result: CorpusBenchmarkResult, filePath: st
  * Addresses the in-sample-only limitation of the main benchmark: every
  * family here is fit using ONLY one condition's data (e.g. AB) and then
  * scored on the OTHER condition's observed counts (BA), which it never
- * saw during fitting — genuine out-of-sample evaluation, not a refit.
+ * saw during fitting - genuine out-of-sample evaluation, not a refit.
  * Repeated in both directions (train on AB / test on BA, and train on BA
  * / test on AB) and summed, exactly mirroring how the main benchmark sums
  * NLL over both conditions in-sample.
@@ -676,7 +676,7 @@ export function writeCorpusBenchmark(result: CorpusBenchmarkResult, filePath: st
  * classical-anchor is deliberately excluded: its two parameters (tauAB,
  * tauBA) are already order-specific by construction (each fit only from
  * its own condition's counts, never shared across orders), so there is no
- * cross-order generalization claim to test — holding out BA does not
+ * cross-order generalization claim to test - holding out BA does not
  * change what tauAB is fit from. Including it would not be a meaningful
  * comparison to the other families' genuine train/test split.
  *

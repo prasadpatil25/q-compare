@@ -108,10 +108,10 @@ export function ResultsView({
                 <tr className="row-best">
                   <td>Observed outcome</td>
                   <td>
-                    {experiment.problem.outcomes.find((o) => o.id === experiment.problem.observedOutcomeId)?.label ?? '—'}
+                    {experiment.problem.outcomes.find((o) => o.id === experiment.problem.observedOutcomeId)?.label ?? '-'}
                   </td>
-                  <td className="num">—</td>
-                  <td className="num">—</td>
+                  <td className="num">-</td>
+                  <td className="num">-</td>
                 </tr>
               </tbody>
             </table>
@@ -119,7 +119,7 @@ export function ResultsView({
         </Panel>
       </div>
 
-      <Panel title="Performance Metrics" sub="Same evaluation conditions for all models — best value marked ✓" className="mb-2">
+      <Panel title="Performance Metrics" sub="Same evaluation conditions for all models - best value marked ✓" className="mb-2">
         <ComparisonTable metrics={results.metrics} />
       </Panel>
 
@@ -146,7 +146,7 @@ export function ResultsView({
           <div className="row wrap mt-1">
             {(Object.keys(results.contextAnalysis.sensitivity) as ModelId[]).map((m) => (
               <span key={m} className="badge badge-gray">
-                {MODEL_LABELS[m]} sensitivity: {results.contextAnalysis?.sensitivity[m].toFixed(4) ?? '—'}
+                {MODEL_LABELS[m]} sensitivity: {results.contextAnalysis?.sensitivity[m].toFixed(4) ?? '-'}
               </span>
             ))}
           </div>
@@ -202,11 +202,11 @@ export function ResultsView({
               <tbody>
                 <tr>
                   <td>Total interference (quantum pipeline)</td>
-                  <td className="num">{results.interferenceAnalysis?.total.toFixed(4) ?? '—'}</td>
+                  <td className="num">{results.interferenceAnalysis?.total.toFixed(4) ?? '-'}</td>
                 </tr>
                 <tr>
                   <td>Non-commutativity distance (TV)</td>
-                  <td className="num">{results.nonCommutativityAnalysis?.distance.toFixed(4) ?? '—'}</td>
+                  <td className="num">{results.nonCommutativityAnalysis?.distance.toFixed(4) ?? '-'}</td>
                 </tr>
                 <tr>
                   <td>Interference applicable</td>
@@ -230,7 +230,7 @@ export function ResultsView({
       <RecommendationBar recommendation={results.recommendation} />
 
       <div className="mt-2">
-        <Panel title="Calculation Traces" sub="Show Calculation — every model step is reproducible from inputs">
+        <Panel title="Calculation Traces" sub="Show Calculation - every model step is reproducible from inputs">
           <div className="grid grid-3">
             {activeModels.map((m) => (
               <div key={m}>

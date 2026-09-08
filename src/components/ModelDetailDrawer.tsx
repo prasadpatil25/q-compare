@@ -86,10 +86,10 @@ export function ModelDetailDrawer({
                 <div className="table-wrap mb-2">
                   <table className="data">
                     <tbody>
-                      <tr><td>Accuracy</td><td className="num">{metrics.accuracy != null ? metrics.accuracy.toFixed(2) : '—'}</td></tr>
-                      <tr><td>Calibration error</td><td className="num">{metrics.calibrationError?.toFixed(4) ?? '—'}</td></tr>
-                      <tr><td>Log-likelihood</td><td className="num">{metrics.logLikelihood?.toFixed(4) ?? '—'}</td></tr>
-                      <tr><td>Brier score</td><td className="num">{metrics.brierScore?.toFixed(4) ?? '—'}</td></tr>
+                      <tr><td>Accuracy</td><td className="num">{metrics.accuracy != null ? metrics.accuracy.toFixed(2) : '-'}</td></tr>
+                      <tr><td>Calibration error</td><td className="num">{metrics.calibrationError?.toFixed(4) ?? '-'}</td></tr>
+                      <tr><td>Log-likelihood</td><td className="num">{metrics.logLikelihood?.toFixed(4) ?? '-'}</td></tr>
+                      <tr><td>Brier score</td><td className="num">{metrics.brierScore?.toFixed(4) ?? '-'}</td></tr>
                       <tr><td>Complexity</td><td className="num">{metrics.complexity}</td></tr>
                     </tbody>
                   </table>
@@ -115,11 +115,11 @@ export function ModelDetailDrawer({
                   <div className="trace-values">
                     {experiment.problem.outcomes.map((o) => (
                       <span key={o.id}>
-                        {o.label}: {(result.details.interference as Record<string, number>)?.[o.id]?.toFixed(4) ?? '—'}
+                        {o.label}: {(result.details.interference as Record<string, number>)?.[o.id]?.toFixed(4) ?? '-'}
                       </span>
                     ))}
                     <span>
-                      Total: {(result.details.totalInterference as number | undefined)?.toFixed(4) ?? '—'}
+                      Total: {(result.details.totalInterference as number | undefined)?.toFixed(4) ?? '-'}
                     </span>
                   </div>
                 </div>
@@ -133,7 +133,7 @@ export function ModelDetailDrawer({
               {modelId === 'bayesian' &&
                 'Bayesian: P(H|E) ∝ P(H) × Π P(Eⱼ|H), applied sequentially, normalized after each evidence item.'}
               {modelId === 'quantum' &&
-                'Quantum-inspired: amplitudes αᵢ = √P(Hᵢ), unitary context phases + Givens evidence rotations, Born-rule measurement P(i) = |αᵢ|². Simulation only — not a quantum computer.'}
+                'Quantum-inspired: amplitudes αᵢ = √P(Hᵢ), unitary context phases + Givens evidence rotations, Born-rule measurement P(i) = |αᵢ|². Simulation only - not a quantum computer.'}
             </p>
 
             {result.steps.map((s, i) => (

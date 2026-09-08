@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Q-Compare — global styles
+   Q-Compare - global styles
    Research laboratory + modern analytics dashboard
    ========================================================================== */
 
@@ -11,7 +11,7 @@
   --topbar-height: 60px;
   --mono: 'JetBrains Mono', 'SF Mono', ui-monospace, Menlo, Consolas, monospace;
 
-  /* Slate & Steel theme — dark (default until JS applies the theme class) */
+  /* Slate & Steel theme - dark (default until JS applies the theme class) */
   --bg-canvas: #0f172a;
   --text-main: #cbd5e1;
   --text-heading: #f8fafc;
@@ -43,7 +43,7 @@
   --alert-border: #0284C7; --alert-text: #0369A1; --th-bg: #0284C7; --th-text: #FFFFFF; --font-family: -apple-system, sans-serif;
 }
 
-/* Derived app tokens — dark mode */
+/* Derived app tokens - dark mode */
 .theme-slate-steel[data-mode="dark"],
 :root:not(.theme-slate-steel) {
   --bg: var(--bg-canvas);
@@ -84,7 +84,7 @@
   --text-purple: #a78bfa;
 }
 
-/* Derived app tokens — light mode */
+/* Derived app tokens - light mode */
 .theme-slate-steel[data-mode="light"] {
   --bg: var(--bg-canvas);
   --bg-soft: #f1f5f9;
@@ -1307,7 +1307,7 @@ table.data td .row-actions {
   }
 }
 
-/* Recharts hover feedback — brighten the bar under the pointer */
+/* Recharts hover feedback - brighten the bar under the pointer */
 .recharts-bar-rectangle:hover path {
   filter: brightness(1.28) saturate(1.05);
 }

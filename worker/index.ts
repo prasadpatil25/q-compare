@@ -1,10 +1,10 @@
 /**
- * Q-Compare Worker API — optional server-side persistence on Cloudflare D1.
+ * Q-Compare Worker API - optional server-side persistence on Cloudflare D1.
  *
  * The v1 frontend is fully functional without this Worker (localStorage mode).
  * This API mirrors the storage actions so experiments/datasets/reports can be
  * persisted server-side when deployed. Model calculations always run in the
- * browser — this Worker never performs probability or QAI math.
+ * browser - this Worker never performs probability or QAI math.
  *
  * Endpoints:
  *   GET    /api/experiments          list experiments

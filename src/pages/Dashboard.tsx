@@ -206,7 +206,7 @@ export function Dashboard() {
           )}
         </Panel>
 
-        <Panel title="Probability Distribution" sub={selected ? `${selected.name} — Quantum-Inspired` : undefined}>
+        <Panel title="Probability Distribution" sub={selected ? `${selected.name} - Quantum-Inspired` : undefined}>
           {distributionData.length > 0 ? (
             <DistributionChart data={distributionData} />
           ) : (
@@ -239,7 +239,7 @@ export function Dashboard() {
                         <span className={`status-dot status-${e.status}`} />
                         <span className="xsmall text-2">{e.status}</span>
                       </td>
-                      <td className="num">{e.results ? e.results.qai.value.toFixed(2) : '—'}</td>
+                      <td className="num">{e.results ? e.results.qai.value.toFixed(2) : '-'}</td>
                     </tr>
                   ))}
                 </tbody>

@@ -205,7 +205,7 @@ export function NewExperiment() {
                 className="input"
                 value={draft.name}
                 onChange={(e) => patch({ name: e.target.value })}
-                placeholder="e.g. Job Offer — Sequential Evidence"
+                placeholder="e.g. Job Offer - Sequential Evidence"
               />
             </div>
             <div className="field">
@@ -411,7 +411,7 @@ export function NewExperiment() {
       {step === 1 && (
         <Panel
           title="Evidence / Context"
-          sub="Order is preserved — order effects are important for quantum-inspired modeling. Drag evidence cards to reorder."
+          sub="Order is preserved - order effects are important for quantum-inspired modeling. Drag evidence cards to reorder."
           actions={
             <button className="btn btn-primary btn-sm" onClick={() => openEvidenceEditor()}>+ Add Evidence</button>
           }
@@ -611,7 +611,7 @@ export function NewExperiment() {
             </div>
             <p className="xsmall text-3 mb-0">
               State representation: amplitude vector |ψ⟩ = Σαᵢ|i⟩; measurement: Born rule P(i) = |αᵢ|².
-              The quantum-inspired model is a classical numerical simulation — it does not run on a quantum computer.
+              The quantum-inspired model is a classical numerical simulation - it does not run on a quantum computer.
             </p>
           </Panel></div>
         </div>
@@ -642,10 +642,10 @@ export function NewExperiment() {
             <button className="btn btn-primary btn-lg" onClick={run} disabled={runPhase >= 0 && !runComplete}>
               {runPhase >= 0 && !runComplete ? 'Running…' : 'Run Models'}
             </button>
-            {runComplete && <Badge tone="green">Completed — {draft.results?.durationMs}ms</Badge>}
+            {runComplete && <Badge tone="green">Completed - {draft.results?.durationMs}ms</Badge>}
           </div>
           <p className="xsmall text-3 mt-2 mb-0">
-            Progress reflects the actual pipeline stages. The run is deterministic — results are reproducible from the
+            Progress reflects the actual pipeline stages. The run is deterministic - results are reproducible from the
             stored configuration.
           </p>
         </Panel>

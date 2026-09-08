@@ -3,12 +3,12 @@ import { MODEL_LABELS } from '../types';
 import { Badge } from './ui';
 
 function fmt(v: number | null | undefined, digits = 3, unit = ''): string {
-  if (v == null) return '—';
+  if (v == null) return '-';
   return `${v.toFixed(digits)}${unit}`;
 }
 
 function pct(v: number | null | undefined): string {
-  if (v == null) return '—';
+  if (v == null) return '-';
   return `${(v * 100).toFixed(1)}%`;
 }
 

@@ -51,8 +51,8 @@ function DisjunctionCard({ benchmark }: { benchmark: EmpiricalDisjunctionBenchma
           <div className="small mb-1">
             <span className="text-3">Quantum fit:</span>{' '}
             <span className="mono">
-              μ = {latest.output.models[0].params.mu?.toFixed(2) ?? '—'} · γ ={' '}
-              {latest.output.models[0].params.gamma?.toFixed(2) ?? '—'} · predicted{' '}
+              μ = {latest.output.models[0].params.mu?.toFixed(2) ?? '-'} · γ ={' '}
+              {latest.output.models[0].params.gamma?.toFixed(2) ?? '-'} · predicted{' '}
               {latest.output.models[0].predictions.map((p) => p.toFixed(2)).join(' / ')}
             </span>
           </div>
@@ -81,7 +81,7 @@ function DisjunctionCard({ benchmark }: { benchmark: EmpiricalDisjunctionBenchma
           </div>
         </div>
       ) : (
-        <span className="xsmall text-3">No runs yet — run the fit to compare models on the published data.</span>
+        <span className="xsmall text-3">No runs yet - run the fit to compare models on the published data.</span>
       )}
 
       <Modal
@@ -126,7 +126,7 @@ function DisjunctionCard({ benchmark }: { benchmark: EmpiricalDisjunctionBenchma
             </div>
             {detail.output.bootstrap && (
               <div className="small text-2">
-                Bootstrap 95% CIs — μ:{' '}
+                Bootstrap 95% CIs - μ:{' '}
                 <span className="mono">
                   [{detail.output.bootstrap.mu[0].toFixed(3)}, {detail.output.bootstrap.mu[1].toFixed(3)}]
                 </span>{' '}
@@ -215,7 +215,7 @@ function QQCard({ benchmark }: { benchmark: EmpiricalQQBenchmark }) {
           </div>
         </div>
       ) : (
-        <span className="xsmall text-3">No runs yet — run the fit to test the QQ prediction on the published data.</span>
+        <span className="xsmall text-3">No runs yet - run the fit to test the QQ prediction on the published data.</span>
       )}
 
       <Modal
@@ -256,7 +256,7 @@ function QQCard({ benchmark }: { benchmark: EmpiricalQQBenchmark }) {
               </table>
             </div>
             <div className="small text-2">
-              Order effects — C<sub>A</sub> ={' '}
+              Order effects - C<sub>A</sub> ={' '}
               <span className="mono">{detail.output.orderEffect.ca.toFixed(4)}</span>, C<sub>B</sub> ={' '}
               <span className="mono">{detail.output.orderEffect.cb.toFixed(4)}</span> · similarity h ={' '}
               <span className="mono">{detail.output.similarity.h.toFixed(4)}</span> (implied 2D angle θ ={' '}
@@ -402,7 +402,7 @@ export function Benchmarks() {
       )}
 
       <div className="mt-3">
-        <SectionTitle label="Literature benchmarks — disjunction effect" />
+        <SectionTitle label="Literature benchmarks - disjunction effect" />
         <p className="text-2 small">
           Sure-thing-principle violations in two-stage gambling, vacation choice and the prisoner's dilemma
           (Tversky & Shafir 1992; Shafir & Tversky 1992; replications; Pothos & Busemeyer 2009).
@@ -416,7 +416,7 @@ export function Benchmarks() {
       </div>
 
       <div className="mt-3">
-        <SectionTitle label="Literature benchmarks — question order effects" />
+        <SectionTitle label="Literature benchmarks - question order effects" />
         <p className="text-2 small">
           Split-ballot survey and laboratory question-order studies (Moore 2002; Wang & Busemeyer 2013).
           Tests the parameter-free QQ equality and compares the constrained quantum model against the

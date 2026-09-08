@@ -124,7 +124,7 @@ export function Experiments() {
                     </td>
                     <td><Badge tone="gray">{e.category}</Badge></td>
                     <td className="nowrap text-2 small">{formatDate(e.updatedAt)}</td>
-                    <td className="xsmall text-2">{e.datasetId ? 'Attached' : '—'}</td>
+                    <td className="xsmall text-2">{e.datasetId ? 'Attached' : '-'}</td>
                     <td>
                       <div className="row wrap" style={{ gap: 4 }}>
                         {models.map((m) => (
@@ -138,10 +138,10 @@ export function Experiments() {
                           {e.results.recommendation.modelId}
                         </Badge>
                       ) : (
-                        '—'
+                        '-'
                       )}
                     </td>
-                    <td className="num">{e.results ? e.results.qai.value.toFixed(2) : '—'}</td>
+                    <td className="num">{e.results ? e.results.qai.value.toFixed(2) : '-'}</td>
                     <td><StatusBadge status={e.status} /></td>
                     <td>
                       <div className="row-actions">

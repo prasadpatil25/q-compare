@@ -66,7 +66,7 @@ export function EvidenceList({
               <span>Confidence</span>
               <ConfidenceBar value={item.confidence} />
               <span>{Math.round(item.confidence * 100)}%</span>
-              <span>Context: {item.context || '—'}</span>
+              <span>Context: {item.context || '-'}</span>
             </div>
           </div>
           {onEdit && (

@@ -25,7 +25,7 @@ export function useTheme() {
     try {
       localStorage.setItem(STORAGE_KEY, mode);
     } catch {
-      /* storage unavailable — theme still applies for the session */
+      /* storage unavailable - theme still applies for the session */
     }
   }, [mode]);
 

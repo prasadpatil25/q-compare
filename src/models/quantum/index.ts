@@ -11,7 +11,7 @@ import {
 } from '../shared';
 
 /**
- * Quantum-Inspired model — a classical numerical simulation of
+ * Quantum-Inspired model - a classical numerical simulation of
  * quantum-probability formalism. It does NOT run on a quantum computer.
  *
  * Formalism:
@@ -27,7 +27,7 @@ import {
  *      component of |ψ⟩ along |cⱼ⟩:
  *        |ψ⟩ → |ψ⟩ + (e^{iλ} − 1)⟨cⱼ|ψ⟩|cⱼ⟩
  *      with λ = (π/4)·contextStrength·confidenceⱼ.
- *      Phase shifts alone do not change measurement probabilities —
+ *      Phase shifts alone do not change measurement probabilities;
  *      they become observable through interference with later rotations.
  *
  * 3. Evidence rotation (per evidence):

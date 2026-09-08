@@ -34,7 +34,7 @@ export function Settings() {
       <h1 className="mb-2">Settings</h1>
 
       <Panel
-        title="Quantum Advantage Indicator — Weights"
+        title="Quantum Advantage Indicator - Weights"
         sub="QAI = w₁·Ctx + w₂·Interf + w₃·ErrRed + w₄·NonComm + w₅·Calib (weighted mean, normalized to 0–1)"
         className="mb-2"
       >
@@ -75,7 +75,7 @@ export function Settings() {
         </p>
       </Panel>
 
-      <Panel title="Appearance — Slate & Steel Theme" sub="Applies a slate palette with a sky accent across the research lab" className="mb-2">
+      <Panel title="Appearance - Slate & Steel Theme" sub="Applies a slate palette with a sky accent across the research lab" className="mb-2">
         <div className="row wrap" role="radiogroup" aria-label="Theme mode">
           <button
             type="button"

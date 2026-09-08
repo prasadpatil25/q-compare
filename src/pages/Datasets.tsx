@@ -140,7 +140,7 @@ export function Datasets() {
           <input id="ds-desc" className="input" value={description} onChange={(e) => setDescription(e.target.value)} />
         </div>
         <div className="field">
-          <label htmlFor="ds-csv">CSV content (optional — header row + data rows)</label>
+          <label htmlFor="ds-csv">CSV content (optional - header row + data rows)</label>
           <textarea
             id="ds-csv"
             className="textarea"

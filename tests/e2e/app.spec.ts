@@ -17,7 +17,7 @@ test('dashboard renders seeded KPIs and navigation', async ({ page }) => {
   await expect(page.getByText(/quantum advantage/i).first()).toBeVisible();
   await expect(page.getByText('Models Compared')).toBeVisible();
   await expect(page.getByText('Best Model').first()).toBeVisible();
-  await expect(page.getByText('Job Offer — Sequential Evidence').first()).toBeVisible();
+  await expect(page.getByText('Job Offer - Sequential Evidence').first()).toBeVisible();
   expect(errors).toEqual([]);
 });
 
@@ -54,7 +54,7 @@ test('all navigation sections are routable', async ({ page }) => {
 test('experiment detail shows full results', async ({ page }) => {
   const errors = await collectConsoleErrors(page);
   await page.goto('/');
-  await page.locator('table.data tbody tr', { hasText: 'Travel Choice — Order Effect' }).click();
+  await page.locator('table.data tbody tr', { hasText: 'Travel Choice - Order Effect' }).click();
   await expect(page).toHaveURL(/\/experiments\/exp_/);
   await expect(page.getByText(/Research Question/i)).toBeVisible();
   await expect(page.getByText(/Quantum Advantage Indicator/i).first()).toBeVisible();
@@ -92,10 +92,10 @@ test('create experiment end-to-end through the wizard', async ({ page }) => {
 test('experiments list allows search and filter', async ({ page }) => {
   const errors = await collectConsoleErrors(page);
   await page.goto('/experiments');
-  await expect(page.getByText('Job Offer — Sequential Evidence').first()).toBeVisible();
+  await expect(page.getByText('Job Offer - Sequential Evidence').first()).toBeVisible();
   await page.getByPlaceholder(/search/i).fill('Travel');
-  await expect(page.getByText('Travel Choice — Order Effect')).toBeVisible();
-  await expect(page.getByText('Job Offer — Sequential Evidence')).toHaveCount(0);
+  await expect(page.getByText('Travel Choice - Order Effect')).toBeVisible();
+  await expect(page.getByText('Job Offer - Sequential Evidence')).toHaveCount(0);
   expect(errors).toEqual([]);
 });
 
@@ -112,7 +112,7 @@ test('benchmarks page runs a benchmark', async ({ page }) => {
 test('reports page generates a report', async ({ page }) => {
   const errors = await collectConsoleErrors(page);
   await page.goto('/reports');
-  await expect(page.getByText('Job Offer — Sequential Evidence').first()).toBeVisible();
+  await expect(page.getByText('Job Offer - Sequential Evidence').first()).toBeVisible();
   await expect(page.getByText('Report Preview')).toBeVisible();
   await expect(page.getByText(/Report sections:/i).first()).toBeVisible();
   expect(errors).toEqual([]);
@@ -123,6 +123,6 @@ test('about and settings render', async ({ page }) => {
   await page.goto('/about');
   await expect(page.getByText(/Q-Compare/i).first()).toBeVisible();
   await page.goto('/settings');
-  await expect(page.getByText(/Quantum Advantage Indicator — Weights/i)).toBeVisible();
+  await expect(page.getByText(/Quantum Advantage Indicator - Weights/i)).toBeVisible();
   expect(errors).toEqual([]);
 });

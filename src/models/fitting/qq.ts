@@ -257,7 +257,7 @@ export function fitQQ(dataset: QQDatasetInput, options: { seed?: number } = {}):
   const notes = [
     'Wang & Busemeyer (2013) QQ model: sequential projections onto the answer subspaces of the two questions. The QQ equality P(AyBy)+P(AnBn) = P(ByAy)+P(BnAn) holds for any dimension, any state and any projectors; it is the a-priori prediction tested here.',
     `Observed q = P̂(ByAy)+P̂(BnAn) − P̂(AyBy)+P̂(AnBn) = ${round(qqTest.q, 4)} with SE ${round(qqTest.se, 4)}, z = ${round(qqTest.z, 3)} (${qqTest.significant ? 'significant at 5%, rejecting the QQ equality' : 'not significant, consistent with the QQ equality'}).`,
-    `Likelihood-ratio test of the constrained quantum model vs the saturated multinomial: χ²(1) = ${round(quantum.chiSquare, 3)} (${quantum.chiSquare > 3.8414588 ? 'significant — the quantum constraint is rejected' : 'not significant — the quantum constraint is not rejected'}).`,
+    `Likelihood-ratio test of the constrained quantum model vs the saturated multinomial: χ²(1) = ${round(quantum.chiSquare, 3)} (${quantum.chiSquare > 3.8414588 ? 'significant - the quantum constraint is rejected' : 'not significant - the quantum constraint is not rejected'}).`,
     `Similarity index h = Re⟨S_Ay|S_By⟩ = ${round(similarity.h, 4)} (implied 2D rotation angle θ = ${round(similarity.theta, 4)} rad = ${round((similarity.theta * 180) / Math.PI, 1)}°).`,
     `Order effects: C_A = ${round(orderEffect.ca, 4)}, C_B = ${round(orderEffect.cb, 4)}.`,
     `The Markov (saturated multinomial) model always fits exactly with ${markov.nParams} free parameters; the quantum constraint uses ${quantum.nParams}. BIC favors the model with the smaller value.`,

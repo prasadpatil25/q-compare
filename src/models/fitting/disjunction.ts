@@ -40,11 +40,11 @@
  * Baselines:
  *   1. Dephased ablation (γ = 0): with no dissonance, evolution cannot mix
  *      the belief blocks, so the unknown-condition prediction is forced to
- *      the average of the known-condition predictions — no interference,
+ *      the average of the known-condition predictions - no interference,
  *      no disjunction effect.
  *   2. Markov mixture (sure-thing constraint): P(T|unknown) must be a
  *      convex combination of the two known-condition probabilities
- *      (Pothos & Busemeyer 2009, §3 — any Markov model obeys the law of
+ *      (Pothos & Busemeyer 2009, §3 - any Markov model obeys the law of
  *      total probability, regardless of parameters, time point or initial
  *      state). With knowns fitted to data, the unknown prediction can never
  *      fall below the smaller known rate.
@@ -289,7 +289,7 @@ export function fitDisjunctionDephased(
 
 /**
  * Markov mixture baseline (sure-thing constraint): P(T|unknown) is a convex
- * combination of the two known-condition probabilities — the structural
+ * combination of the two known-condition probabilities - the structural
  * property of ANY Markov model (Pothos & Busemeyer 2009, §3). Its unknown
  * prediction can never fall below the smaller known rate, which is exactly
  * the violation in the data.
@@ -411,7 +411,7 @@ export function fitDisjunction(
 
   const notes: string[] = [
     'Pothos & Busemeyer (2009) quantum model: 4D Hilbert space, payoff Hamiltonian H_A (Eq. 2.1b) and dissonance Hamiltonian H_B (Eq. 2.2b), evolution time t = π/2.',
-    'The dephased ablation (γ = 0) cannot mix the belief blocks, so its unknown-condition prediction is forced to the average of the two known predictions — no interference is possible without γ.',
+    'The dephased ablation (γ = 0) cannot mix the belief blocks, so its unknown-condition prediction is forced to the average of the two known predictions - no interference is possible without γ.',
     `Observed interference I = P̂(T|unknown) − (P̂(T|knownA) + P̂(T|knownB))/2 = ${round(observedInterference, 3)}.`,
     `The sure-thing mixture prediction is ${round(mixturePrediction, 3)}; the observed unknown-condition proportion is ${round(dataset.observed[2], 3)} (violation magnitude ${round(violationMagnitude, 3)}).`,
     'The Markov mixture baseline cannot predict an unknown-condition proportion below the smaller known-condition proportion; its residual measures the irreducible disjunction violation.',

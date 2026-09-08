@@ -76,7 +76,7 @@ export function ExperimentDetail() {
       <div className="grid grid-2 mb-2">
         <Panel title="Experiment Summary">
           <div className="small text-2 col" style={{ gap: 4 }}>
-            <div><span className="text-3">Research question:</span> {experiment.researchQuestion || '—'}</div>
+            <div><span className="text-3">Research question:</span> {experiment.researchQuestion || '-'}</div>
             <div><span className="text-3">Type:</span> <Badge tone="gray">{experiment.category}</Badge></div>
             <div><span className="text-3">Dataset:</span> {experiment.datasetId ?? 'None'}</div>
             <div><span className="text-3">Created:</span> {formatDateTime(experiment.createdAt)}</div>
@@ -87,7 +87,7 @@ export function ExperimentDetail() {
                   {experiment.results.recommendation.modelId}
                 </Badge>
               ) : (
-                '—'
+                '-'
               )}
             </div>
           </div>
@@ -124,7 +124,7 @@ export function ExperimentDetail() {
         </Panel>
       </div>
 
-      <Panel title="Evidence / Context" sub={`${experiment.evidence.length} item(s) — order preserved`} className="mb-2">
+      <Panel title="Evidence / Context" sub={`${experiment.evidence.length} item(s) - order preserved`} className="mb-2">
         {experiment.evidence.length > 0 ? (
           <EvidenceTimeline evidence={experiment.evidence} />
         ) : (

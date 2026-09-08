@@ -228,7 +228,7 @@ export function EvidenceTimeline({
         <div key={e.id} className="trace" style={{ margin: 0 }}>
           <div className="trace-head">
             <span>
-              <span className="mono text-3">E{e.sequence}</span> — {e.name}
+              <span className="mono text-3">E{e.sequence}</span> - {e.name}
             </span>
             <span className="badge badge-gray">{Math.round(e.confidence * 100)}% conf.</span>
           </div>

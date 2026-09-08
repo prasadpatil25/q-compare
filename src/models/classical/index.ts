@@ -43,7 +43,7 @@ export function runClassical(
   let formula: string;
   if (evidence.length === 0) {
     posterior = { ...prior };
-    formula = 'No evidence provided — posterior = base probabilities';
+    formula = 'No evidence provided - posterior = base probabilities';
   } else {
     const L = likelihoodMatrix(evidence, ids);
     const raw: Record<string, number> = {};

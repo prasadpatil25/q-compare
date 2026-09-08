@@ -33,7 +33,7 @@ pnpm-debug.log*
 *.fdb_latexmk
 *.synctex.gz
 
-# Docs (manuscript drafts, research notes) — kept locally, not published
+# Docs (manuscript drafts, research notes) - kept locally, not published
 docs/
 
 # Tool caches / stray archives
@@ -48,7 +48,7 @@ playwright-report/
 # (Keys normally live in ~/.pi, your home dir, outside this repo anyway.)
 .pi/
 
-# Coding-agent tooling/config — internal, not published
+# Coding-agent tooling/config - internal, not published
 .claude/
 .agents/
 .devcontainer/

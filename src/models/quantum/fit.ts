@@ -28,7 +28,7 @@ import { runQuantumPipeline } from './index';
  * reflection symmetry λ → −λ (with a matching rotation adjustment),
  * producing almost identical predictions for widely different fitted
  * parameters. Strong-contrast evidence resolves the ambiguity. This is
- * an inherent property of the model family, not an optimizer artifact —
+ * an inherent property of the model family, not an optimizer artifact;
  * it must be reported whenever fitted phases are interpreted.
  */
 
@@ -36,7 +36,7 @@ export interface FitConditionInput {
   /** Condition id (e.g. 'AB' or 'BA' evidence order). */
   id: string;
   outcomes: Outcome[];
-  /** Condition-specific evidence — order matters for the quantum model. */
+  /** Condition-specific evidence - order matters for the quantum model. */
   evidence: EvidenceItem[];
   /** Number of observations in this condition. */
   trials: number;
@@ -184,7 +184,7 @@ function patternSearch(
 /**
  * Fit the quantum-inspired model to observed outcome counts.
  * Conditions may differ in evidence order (e.g. AB vs BA), but share
- * the fitted strengths — appropriate for order-effect datasets.
+ * the fitted strengths - appropriate for order-effect datasets.
  */
 export function fitQuantumToData(
   conditions: FitConditionInput[],

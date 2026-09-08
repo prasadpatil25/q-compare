@@ -169,7 +169,7 @@ describe('QAI', () => {
     expect(mk(0.8).level).toBe('strong');
   });
 
-  it('never claims quantum superiority — caveats always present', () => {
+  it('never claims quantum superiority - caveats always present', () => {
     const qai = computeQai(
       { context: 1, interference: 1, errorReduction: 1, nonCommutativity: 1, calibration: 1 },
       { context: 1, interference: 1, errorReduction: 1, nonCommutativity: 1, calibration: 1 },

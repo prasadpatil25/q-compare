@@ -35,7 +35,7 @@ export function QaiGauge({
 
   return (
     <div className="qai-gauge">
-      <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} role="img" aria-label={`QAI ${qai.value.toFixed(2)} — ${qai.label}`}>
+      <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} role="img" aria-label={`QAI ${qai.value.toFixed(2)} - ${qai.label}`}>
         <path d={arcPath(cx, cy, r, -90, 90)} stroke="var(--track-bg)" strokeWidth={14} fill="none" strokeLinecap="round" />
         <path
           d={arcPath(cx, cy, r, -90, angle)}

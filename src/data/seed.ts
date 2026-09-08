@@ -120,7 +120,7 @@ export function seedExperiments(_settings: AppSettings): Experiment[] {
   exps.push(
     buildExperiment({
       id: 'exp_job_offer',
-      name: 'Job Offer — Sequential Evidence',
+      name: 'Job Offer - Sequential Evidence',
       description:
         'A decision-maker compares two job offers as evidence about salary, remote work, growth and relocation arrives one item at a time.',
       researchQuestion:
@@ -150,7 +150,7 @@ export function seedExperiments(_settings: AppSettings): Experiment[] {
   exps.push(
     buildExperiment({
       id: 'exp_product_ctx',
-      name: 'Product Selection — Contextual Decision',
+      name: 'Product Selection - Contextual Decision',
       description:
         'The same two laptops are evaluated under three different decision contexts: budget, performance, and ecosystem.',
       researchQuestion:
@@ -179,7 +179,7 @@ export function seedExperiments(_settings: AppSettings): Experiment[] {
   exps.push(
     buildExperiment({
       id: 'exp_supplier',
-      name: 'Supplier Selection — Bayesian Updating',
+      name: 'Supplier Selection - Bayesian Updating',
       description:
         'A supplier is selected using delivery, cost and quality evidence with a strong prior from past performance.',
       researchQuestion:
@@ -208,7 +208,7 @@ export function seedExperiments(_settings: AppSettings): Experiment[] {
   exps.push(
     buildExperiment({
       id: 'exp_travel_order',
-      name: 'Travel Choice — Order Effect',
+      name: 'Travel Choice - Order Effect',
       description:
         'The same trip alternatives are evaluated when budget, climate and logistics evidence arrive in different orders.',
       researchQuestion:
@@ -238,7 +238,7 @@ export function seedExperiments(_settings: AppSettings): Experiment[] {
   exps.push(
     buildExperiment({
       id: 'exp_tech_risk',
-      name: 'Technology Selection — Risk / Uncertainty',
+      name: 'Technology Selection - Risk / Uncertainty',
       description:
         'A technology stack is chosen under risk: probabilities are known but utilities and uncertainty vary across alternatives.',
       researchQuestion:
@@ -266,7 +266,7 @@ export function seedExperiments(_settings: AppSettings): Experiment[] {
   exps.push(
     buildExperiment({
       id: 'exp_disjunction',
-      name: 'Benchmark — Disjunction Effect',
+      name: 'Benchmark - Disjunction Effect',
       description:
         'A purchase decision is evaluated under a known positive rating, a known price drop, and an unknown condition. The observed outcome (decline) illustrates the classic disjunction effect: under an unknown condition, the decision-maker refrains from purchasing even though each known condition favors purchase.',
       researchQuestion:
@@ -505,7 +505,7 @@ export function benchmarkToExperiment(benchmark: Benchmark, settings: AppSetting
   const createdAt = new Date().toISOString();
   const experiment: Experiment = {
     id: `bmrun_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 7)}`,
-    name: `${benchmark.name} — Run`,
+    name: `${benchmark.name} - Run`,
     description: benchmark.description,
     researchQuestion: `Benchmark run: ${benchmark.name}`,
     category: benchmark.category,

@@ -18,7 +18,7 @@ import { avg, clamp, round } from '../utils';
  * - Prediction error: 1 − P(observed) when an observed outcome exists.
  * - Expected utility: Σᵢ Pᵢ·Uᵢ.
  * - Complexity: 1 = Classical, 2 = Bayesian, 3 = Quantum-Inspired (parameterized
- *   state + operator count). Reported separately — never used to rank quality.
+ *   state + operator count). Reported separately - never used to rank quality.
  */
 export function computeMetrics(
   modelId: ModelId,

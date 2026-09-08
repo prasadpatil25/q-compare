@@ -46,7 +46,7 @@ function save<T>(key: string, value: T): void {
   try {
     localStorage.setItem(key, JSON.stringify(value));
   } catch {
-    // storage unavailable — app continues in memory
+    // storage unavailable - app continues in memory
   }
 }
 

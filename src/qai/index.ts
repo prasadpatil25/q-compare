@@ -15,7 +15,7 @@ import { runQuantumPipeline } from '../models/quantum';
 import { likelihoodMatrix } from '../models/shared';
 
 /**
- * Quantum Advantage Indicator (QAI) — a research visualization metric,
+ * Quantum Advantage Indicator (QAI) - a research visualization metric,
  * NOT a universal scientific measure of "quantumness".
  *
  *   QAI = w₁·Ctx + w₂·Interf + w₃·ErrRed + w₄·NonComm + w₅·Calib   (weighted mean)

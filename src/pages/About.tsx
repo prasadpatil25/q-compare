@@ -46,12 +46,12 @@ model provide measurable additional value over classical and Bayesian alternativ
 
       <Panel title="Interpretation & Limits" className="mb-2">
         <ul className="small text-2" style={{ paddingLeft: 18, margin: 0 }}>
-          <li>Sample experiments are decision-analysis simulations — not predictions of real-world future events.</li>
+          <li>Sample experiments are decision-analysis simulations - not predictions of real-world future events.</li>
           <li>No financial, trading, or investment advice; no medical diagnosis.</li>
           <li>Model calculations and QAI do not depend on any external AI service.</li>
           <li>All results are reproducible from stored configurations (see Reproducibility on each experiment).</li>
           <li>QAI language: "the quantum-inspired model demonstrates stronger performance for this experiment under the
-            selected evaluation criteria" — never "quantum is better".</li>
+            selected evaluation criteria" - never "quantum is better".</li>
         </ul>
       </Panel>
 

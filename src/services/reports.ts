@@ -15,7 +15,7 @@ export function buildReport(experiment: Experiment): ReportData {
 }
 
 function pct(v: number | null | undefined): string {
-  return v == null ? '—' : `${(v * 100).toFixed(1)}%`;
+  return v == null ? '-' : `${(v * 100).toFixed(1)}%`;
 }
 
 function metricsTable(experiment: Experiment): string {
@@ -29,9 +29,9 @@ function metricsTable(experiment: Experiment): string {
     ['Accuracy', ...ids.map((id) => pct(results.metrics[id].accuracy))],
     ['Prediction Error', ...ids.map((id) => pct(results.metrics[id].predictionError))],
     ['Calibration Error', ...ids.map((id) => pct(results.metrics[id].calibrationError))],
-    ['Brier Score', ...ids.map((id) => results.metrics[id].brierScore?.toFixed(4) ?? '—')],
-    ['Log-Likelihood', ...ids.map((id) => results.metrics[id].logLikelihood?.toFixed(4) ?? '—')],
-    ['Expected Utility', ...ids.map((id) => results.metrics[id].expectedUtility?.toFixed(4) ?? '—')],
+    ['Brier Score', ...ids.map((id) => results.metrics[id].brierScore?.toFixed(4) ?? '-')],
+    ['Log-Likelihood', ...ids.map((id) => results.metrics[id].logLikelihood?.toFixed(4) ?? '-')],
+    ['Expected Utility', ...ids.map((id) => results.metrics[id].expectedUtility?.toFixed(4) ?? '-')],
     ['Complexity', ...ids.map((id) => String(results.metrics[id].complexity))],
     ['Context Sensitivity', ...ids.map((id) => pct(results.metrics[id].contextSensitivity))],
     ['Order Effect (ΔP)', ...ids.map((id) => pct(results.metrics[id].orderEffect))],
@@ -49,7 +49,7 @@ export function reportToMarkdown(report: ReportData): string {
   const lines: string[] = [];
   lines.push(`# ${e.name}`);
   lines.push('');
-  lines.push(`> Generated ${formatDateTime(report.generatedAt)} — Q-Compare v${report.appVersion}`);
+  lines.push(`> Generated ${formatDateTime(report.generatedAt)} - Q-Compare v${report.appVersion}`);
   lines.push('');
   lines.push('## 1. Research Question');
   lines.push('');
@@ -67,7 +67,7 @@ export function reportToMarkdown(report: ReportData): string {
     lines.push(`| ${o.label} | ${o.utility} | ${pct(o.priorProbability)} |`),
   );
   lines.push('');
-  lines.push(`**Observed outcome:** ${e.problem.outcomes.find((o) => o.id === e.problem.observedOutcomeId)?.label ?? '—'}`);
+  lines.push(`**Observed outcome:** ${e.problem.outcomes.find((o) => o.id === e.problem.observedOutcomeId)?.label ?? '-'}`);
   lines.push('');
   lines.push('## 3. Dataset');
   lines.push('');
@@ -88,7 +88,7 @@ export function reportToMarkdown(report: ReportData): string {
   lines.push('## 5. Classical Model');
   lines.push('');
   if (r && r.models.classical.status === 'ok') {
-    lines.push(`**Decision:** ${r.models.classical.decisionLabel} — **Expected utility:** ${r.models.classical.expectedUtility.toFixed(4)}`);
+    lines.push(`**Decision:** ${r.models.classical.decisionLabel} - **Expected utility:** ${r.models.classical.expectedUtility.toFixed(4)}`);
     lines.push('');
     lines.push('**Probabilities:**');
     lines.push('');
@@ -102,13 +102,13 @@ export function reportToMarkdown(report: ReportData): string {
   lines.push('## 6. Bayesian Model');
   lines.push('');
   if (r && r.models.bayesian.status === 'ok') {
-    lines.push(`**Decision:** ${r.models.bayesian.decisionLabel} — **Expected utility:** ${r.models.bayesian.expectedUtility.toFixed(4)}`);
+    lines.push(`**Decision:** ${r.models.bayesian.decisionLabel} - **Expected utility:** ${r.models.bayesian.expectedUtility.toFixed(4)}`);
     lines.push('');
     lines.push('**Probabilities:**');
     lines.push('');
     e.problem.outcomes.forEach((o) => lines.push(`- P(${o.label}) = ${pct(r.models.bayesian.probabilities[o.id])}`));
     lines.push('');
-    lines.push(`**Prior source:** ${e.config.bayesian.priorSource} — **Update:** ${e.config.bayesian.updateStrategy}`);
+    lines.push(`**Prior source:** ${e.config.bayesian.priorSource} - **Update:** ${e.config.bayesian.updateStrategy}`);
   } else {
     lines.push('_Not run._');
   }
@@ -118,17 +118,17 @@ export function reportToMarkdown(report: ReportData): string {
   lines.push('> **Important:** the quantum-inspired model is a mathematical simulation of quantum-probability formalism. It does not run on a quantum computer.');
   lines.push('');
   if (r && r.models.quantum.status === 'ok') {
-    lines.push(`**Decision:** ${r.models.quantum.decisionLabel} — **Expected utility:** ${r.models.quantum.expectedUtility.toFixed(4)}`);
+    lines.push(`**Decision:** ${r.models.quantum.decisionLabel} - **Expected utility:** ${r.models.quantum.expectedUtility.toFixed(4)}`);
     lines.push('');
     lines.push('**Probabilities:**');
     lines.push('');
     e.problem.outcomes.forEach((o) => lines.push(`- P(${o.label}) = ${pct(r.models.quantum.probabilities[o.id])}`));
     lines.push('');
-    lines.push(`**Amplitudes:** ${String(r.models.quantum.details.amplitudeText ?? '—')}`);
+    lines.push(`**Amplitudes:** ${String(r.models.quantum.details.amplitudeText ?? '-')}`);
     lines.push('');
     lines.push(`**Total interference:** ${pct(r.models.quantum.details.totalInterference as number | undefined)}`);
     lines.push('');
-    lines.push(`**State representation:** ${e.config.quantum.stateRepresentation} — **Interference mode:** ${e.config.quantum.interferenceMode}`);
+    lines.push(`**State representation:** ${e.config.quantum.stateRepresentation} - **Interference mode:** ${e.config.quantum.interferenceMode}`);
   } else {
     lines.push('_Not run._');
   }
@@ -150,7 +150,7 @@ export function reportToMarkdown(report: ReportData): string {
   lines.push('## 11. QAI Calculation');
   lines.push('');
   if (r) {
-    lines.push(`**QAI = ${r.qai.value.toFixed(3)}** — ${r.qai.label}`);
+    lines.push(`**QAI = ${r.qai.value.toFixed(3)}** - ${r.qai.label}`);
     lines.push('');
     lines.push('| Component | Value | Weight |');
     lines.push('|---|---|---|');

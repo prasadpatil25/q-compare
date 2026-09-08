@@ -119,7 +119,7 @@ export function runExperiment(experiment: Experiment): ExperimentResults {
     reasons.push('The experiment contains order-sensitive evidence');
   }
   if (metrics.quantum.predictionError == null && experiment.problem.observedOutcomeId == null) {
-    caveats.push('No observed outcome is defined — error-based components use Brier score instead.');
+    caveats.push('No observed outcome is defined - error-based components use Brier score instead.');
   }
 
   const qai = computeQai(qaiComponents, experiment.config.qaiWeights ?? DEFAULT_WEIGHTS, reasons, caveats);
@@ -174,7 +174,7 @@ function recommend(
 ): Recommendation {
   const available = (Object.keys(models) as ModelId[]).filter((m) => models[m].status === 'ok');
   if (available.length === 0) {
-    return { modelId: 'classical', reason: 'No model produced results — check the experiment configuration.' };
+    return { modelId: 'classical', reason: 'No model produced results - check the experiment configuration.' };
   }
   if (available.length === 1) {
     return {
@@ -287,6 +287,6 @@ function bestErrorFallback(
   const reason =
     winner.id === 'quantum'
       ? `The quantum-inspired model achieved the best calibration under the selected criteria (calibration error ${winner.calib.toFixed(3)}), and the Quantum Advantage Indicator (QAI = ${qaiValue.toFixed(2)}) supports an advantage for this experiment. This is a measured result, not a general claim about quantum models.`
-      : `The ${label} model achieved the best calibration (${winner.calib.toFixed(3)} vs ${second?.calib.toFixed(3) ?? '—'}) without requiring contextual or order-sensitive assumptions. The quantum-inspired model did not demonstrate a meaningful advantage (QAI = ${qaiValue.toFixed(2)}).`;
+      : `The ${label} model achieved the best calibration (${winner.calib.toFixed(3)} vs ${second?.calib.toFixed(3) ?? '-'}) without requiring contextual or order-sensitive assumptions. The quantum-inspired model did not demonstrate a meaningful advantage (QAI = ${qaiValue.toFixed(2)}).`;
   return { modelId: winner.id, reason };
 }

@@ -96,7 +96,7 @@ test('empirical benchmark runs persist across reload', async ({ page }) => {
   await expect(gambling.getByText(/Last run/)).toBeVisible();
 
   await page.reload();
-  await expect(page.getByText('Literature benchmarks — disjunction effect')).toBeVisible();
+  await expect(page.getByText('Literature benchmarks - disjunction effect')).toBeVisible();
   const after = card(page, 'Two-Stage Gambling');
   await expect(after.getByText(/Quantum fit: μ = 0\.59/)).toBeVisible();
   await expect(after.getByText(/Last run/)).toBeVisible();

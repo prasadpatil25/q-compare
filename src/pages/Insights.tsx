@@ -69,7 +69,7 @@ export function Insights() {
       )}
 
       <p className="xsmall text-3 mt-2">
-        Language note: insights describe observed associations under the selected configurations — they do not prove
+        Language note: insights describe observed associations under the selected configurations - they do not prove
         that any model family is generally superior.
       </p>
     </div>

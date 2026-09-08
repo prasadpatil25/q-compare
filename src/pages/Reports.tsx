@@ -70,12 +70,12 @@ export function Reports() {
                     </Badge>
                   </div>
                   <div>
-                    <span className="text-3">QAI:</span> <span className="mono">{selected.results?.qai.value.toFixed(3)}</span> —{' '}
+                    <span className="text-3">QAI:</span> <span className="mono">{selected.results?.qai.value.toFixed(3)}</span> -{' '}
                     {selected.results?.qai.label}
                   </div>
                   <div>
-                    <span className="text-3">Metrics:</span> accuracy {selected.results?.metrics.quantum.accuracy ?? '—'} · brier{' '}
-                    {selected.results?.metrics.quantum.brierScore?.toFixed(3) ?? '—'}
+                    <span className="text-3">Metrics:</span> accuracy {selected.results?.metrics.quantum.accuracy ?? '-'} · brier{' '}
+                    {selected.results?.metrics.quantum.brierScore?.toFixed(3) ?? '-'}
                   </div>
                 </div>
                 <div className="divider" style={{ margin: '4px 0' }} />
